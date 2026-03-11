@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main/css/pay_template_style.css' %}">
+    <title>Purchase Courses</title>
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Step 1: "Buy" Button -->
+        <div class="step" id="step1">
+            <h1>Get Access to Courses</h1>
+            <button class="btn" id="buyBtn">Buy</button>
+        </div>
+        
+        <!-- Step 2: Select courses and enter email -->
+        <div class="step hidden" id="step2">
+            <h1>Select options and enter your email</h1>
+            
+            <h2>Choose a course or package:</h2>
+            <div class="select-container">
+                <select class="custom-select" id="courseSelect">
+                    <option value="" disabled selected>-- Select one option --</option>
+                    <option value="course1">Course 1</option>
+                    <option value="course2">Course 2</option>
+                    <option value="course3">Course 3</option>
+                    <option value="package123">Package 1/2/3 (all courses)</option>
+                    <option value="package12">Package 1/2 (courses 1 and 2)</option>
+                    <option value="package23">Package 2/3 (courses 2 and 3)</option>
+                </select>
+            </div>
+            
+            <div class="option-description">
+                * Only one choice available: either a single course or a package
+            </div>
+            
+            <h2 style="margin-top: 30px;">Additional options:</h2>
+            <div class="checkbox-group">
+                <input type="checkbox" id="chat" name="chat" value="chat">
+                <label for="chat">Chat access</label>
+            </div>
+            <div class="option-description">
+                * Access to the general participants chat can be added to any course or package
+            </div>
+            
+            <!-- Price calculator removed -->
+            
+            <input type="email" class="email-input" id="email" placeholder="Enter your email" required>
+            <div class="error" id="emailError">Please enter a valid email</div>
+            <div class="error" id="selectError" style="margin-top: 10px;">Please select a course or package</div>
+            
+            <button class="btn" id="submitBtn" style="margin-top: 30px;">Proceed to payment</button>
+        </div>
+        
+        <!-- Step 3: Stripe Payment Form -->
+        <div class="step hidden" id="step3-payment">
+            <h1>Course Payment</h1>
+            
+            <div id="paymentSummary" style="width: 100%; margin-bottom: 20px; padding: 15px; background: #f9f9f9; border-radius: 10px;">
+                <h3 style="color: #333; margin-bottom: 10px; font-size: 16px;">Your order:</h3>
+                <div id="paymentOrderDetails"></div>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #ddd;">
+                    <strong>Total: <span id="paymentTotal" style="color: #27ae60; font-size: 20px;"></span></strong>
+                </div>
+            </div>
+            
+            <!-- Stripe Payment Element -->
+            <form id="payment-form">
+                <div id="payment-element" style="margin-bottom: 20px;">
+                    <!-- Stripe Payment Element will be inserted here -->
+                </div>
+                
+                <div id="payment-message" class="error" style="display: none; margin-bottom: 15px;"></div>
+                
+                <button type="submit" class="btn" id="pay-button" style="width: 100%;">
+                    <span id="button-text">Pay</span>
+                    <span id="spinner" style="display: none;">Processing...</span>
+                </button>
+                
+                <button type="button" class="btn" id="backToSelectionBtn" style="margin-top: 15px; background: #95a5a6;">
+                    ← Back to selection
+                </button>
+            </form>
+        </div>
+        
+        <!-- Step 4: Successful Purchase -->
+        <div class="step hidden" id="step4-success">
+            <div class="success-icon">✓</div>
+            <h1 class="success-message">Payment Successful!</h1>
+            
+            <!-- PLACE FOR DISCORD BOT LINK -->
+            <div class="link-placeholder" id="discordLink">
+                <div style="text-align: center;">
+                    <strong>Discord link will appear here</strong><br>
+                    <span style="font-size: 12px;">(will be inserted automatically by the bot)</span>
+                </div>
+            </div>
+            
+            <!-- Display selected options -->
+            <div id="selectedOptions" style="width: 100%; margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 10px;">
+                <h3 style="color: #333; margin-bottom: 10px; font-size: 16px;">Your order:</h3>
+                <div id="orderDetails"></div>
+            </div>
+            
+            <button class="btn" id="backBtn" style="margin-top: 30px; background: #95a5a6;">Home</button>
+        </div>
+    </div>
+
+    <!-- Pass Stripe key to JavaScript -->
+    <script>
+        window.STRIPE_PUBLISHABLE_KEY = '{{ stripe_publishable_key }}';
+        window.API_BASE_URL = 'http://127.0.0.1:8000';
+    </script>
+    <script src="{% static 'main/js/pay_template_main.js' %}"></script>
+</body>
+</html>

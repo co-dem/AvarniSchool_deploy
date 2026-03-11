@@ -1,0 +1,297 @@
+/* ===== ПЕРЕМЕННЫЕ ===== */
+:root {
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --color-primary: #667eea;
+    --color-success: #4cd137;
+    --color-error: #ff4757;
+    --border-light: 2px solid #e0e0e0;
+    --border-focus: 2px solid #667eea;
+    --shadow-card: 0 20px 40px rgba(0,0,0,0.1);
+    --shadow-hover: 0 10px 20px rgba(102, 126, 234, 0.3);
+    --transition-base: all 0.3s ease;
+    --bg-light: #f7f7f7;
+    --bg-hover: #f0f0f0;
+}
+
+/* ===== БАЗОВЫЕ СБРОСЫ ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background: var(--gradient-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ===== КОНТЕЙНЕР ===== */
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: var(--shadow-card);
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+    transition: var(--transition-base);
+}
+
+.step {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===== ТИПОГРАФИКА ===== */
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 24px;
+}
+
+h2 {
+    color: #555;
+    margin: 25px 0 15px 0;
+    font-size: 18px;
+    width: 100%;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* ===== КНОПКИ ===== */
+.btn {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+    max-width: 300px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* ===== ФОРМЫ ===== */
+.checkbox-group {
+    background: var(--bg-light);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s;
+    width: 100%;
+}
+
+.checkbox-group:hover {
+    background: var(--bg-hover);
+}
+
+.checkbox-group input {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    flex: 1;
+}
+
+.option-description {
+    font-size: 12px;
+    color: #666;
+    margin-left: 35px;
+    margin-top: 3px;
+}
+
+.select-container {
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.custom-select {
+    width: 100%;
+    padding: 15px;
+    border: var(--border-light);
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: white;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    transition: border-color 0.2s;
+}
+
+.custom-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.select-option {
+    padding: 8px 0;
+    color: #666;
+}
+
+.select-option:first-child {
+    color: #999;
+}
+
+.email-input {
+    width: 100%;
+    padding: 15px;
+    border: var(--border-light);
+    border-radius: 10px;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: border-color 0.2s;
+}
+
+.email-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+/* ===== СОСТОЯНИЯ ===== */
+.error {
+    color: var(--color-error);
+    margin-top: 5px;
+    font-size: 14px;
+    display: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ===== УСПЕХ ===== */
+.success-message {
+    text-align: center;
+    color: #333;
+}
+
+.success-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: var(--color-success);
+}
+
+.link-placeholder {
+    background: var(--bg-light);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 30px;
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #e0e0e0;
+    color: #666;
+    font-size: 14px;
+}
+
+.link-placeholder strong {
+    color: var(--color-primary);
+}
+
+/* ===== ЗАКАЗ ===== */
+.current-order-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.order-info {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--color-primary);
+}
+
+.order-info p {
+    margin: 5px 0;
+}
+
+/* ===== АНИМАЦИИ ===== */
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.current-order-container {
+    animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== АДАПТАЦИЯ ===== */
+@media (max-width: 600px) {
+    .container {
+        border-radius: 15px;
+    }
+    
+    .step {
+        padding: 30px 20px;
+    }
+    
+    h1 {
+        font-size: 20px;
+    }
+    
+    h2 {
+        font-size: 16px;
+        margin: 20px 0 10px 0;
+    }
+    
+    .btn {
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+}

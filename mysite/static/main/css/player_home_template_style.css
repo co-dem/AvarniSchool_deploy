@@ -1,0 +1,293 @@
+/* ===== КАСТОМНЫЙ ВИДЕО ПЛЕЕР ===== */
+.custom-video-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Видео */
+.custom-video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none; /* Управление через кастомные кнопки */
+}
+
+/* Кастомные элементы управления */
+.custom-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 20px 16px 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.custom-video-player:hover .custom-controls,
+.custom-video-player:focus-within .custom-controls {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Для мобильных: показываем controls при касании или всегда (можно настроить через JS) */
+@media (max-width: 768px) {
+    .custom-controls {
+        opacity: 1;
+        padding: 12px 10px 8px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    }
+}
+
+/* Кнопки управления */
+.control-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.control-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+.control-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .control-btn {
+        width: 32px;
+        height: 32px;
+    }
+    .control-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Прогресс-контейнер */
+.progress-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+/* Прогресс-бар */
+.progress-bar {
+    flex: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    min-width: 50px;
+    transition: height 0.1s;
+}
+
+.progress-bar:hover {
+    height: 8px;
+}
+
+.progress-filled {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #ff3366;
+    border-radius: 3px;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.progress-buffer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.progress-thumb {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: #ff3366;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    pointer-events: none;
+    z-index: 4;
+    opacity: 0;
+    transition: opacity 0.1s;
+}
+
+.progress-bar:hover .progress-thumb {
+    opacity: 1;
+}
+
+/* Время */
+.time-display {
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-shadow: 0 1px 2px black;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.3px;
+}
+
+/* Вертикальное видео */
+.vertical-video-wrapper {
+    max-width: 400px; /* Ограничиваем ширину для вертикального видео */
+    margin: 0 auto;
+}
+
+.vertical-player {
+    aspect-ratio: 9 / 16; /* Вертикальное соотношение сторон */
+    max-height: 80vh;
+}
+
+.vertical-video {
+    object-fit: cover; /* Чтобы видео заполняло контейнер */
+}
+
+.vertical-controls {
+    padding: 16px 12px;
+}
+
+.vertical-progress {
+    padding: 0 4px;
+}
+
+.vertical-big-play {
+    width: 80px;
+    height: 80px;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 480px) {
+    .vertical-video-wrapper {
+        max-width: 100%;
+    }
+    
+    .vertical-player {
+        aspect-ratio: 9 / 16;
+        max-height: 70vh;
+    }
+    
+    .vertical-big-play {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .vertical-big-play svg {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Для планшетов */
+@media (min-width: 481px) and (max-width: 768px) {
+    .vertical-video-wrapper {
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .time-display {
+        font-size: 0.7rem;
+    }
+}
+
+/* Большая кнопка Play по центру */
+.big-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 51, 102, 0.9);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background-color 0.2s;
+    z-index: 5;
+    color: white;
+    box-shadow: 0 8px 20px rgba(255, 51, 102, 0.4);
+}
+
+.big-play-btn svg {
+    width: 40px;
+    height: 40px;
+    fill: white;
+    margin-left: 4px;
+}
+
+.big-play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: #ff1a4f;
+}
+
+/* Скрываем большую кнопку во время воспроизведения */
+.custom-video-player.playing .big-play-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .big-play-btn {
+        width: 55px;
+        height: 55px;
+    }
+    .big-play-btn svg {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Адаптация для ландшафтной ориентации на мобильных */
+@media (max-height: 480px) and (orientation: landscape) {
+    .custom-video-player {
+        aspect-ratio: 16 / 9;
+    }
+    .custom-controls {
+        padding: 8px 10px;
+    }
+    .big-play-btn {
+        width: 45px;
+        height: 45px;
+    }
+}

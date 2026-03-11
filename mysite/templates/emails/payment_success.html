@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 0 0 5px 5px;
+        }
+        .order-details {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .invite-section {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .invite-button {
+            display: inline-block;
+            background-color: #5865F2;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .chat-info {
+            background-color: #fff3e0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>✅ Оплата прошла успешно!</h1>
+    </div>
+    
+    <div class="content">
+        <p>Здравствуйте!</p>
+        <p>Ваш платеж был успешно обработан. Спасибо за покупку!</p>
+        
+        <div class="order-details">
+            <h3>📋 Детали заказа</h3>
+            <table>
+                <tr>
+                    <td class="label">Номер заказа:</td>
+                    <td>{{ order_id }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Номер платежа:</td>
+                    <td>{{ payment_id }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Email:</td>
+                    <td>{{ email }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Куплено:</td>
+                    <td>{{ course_name }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Чат:</td>
+                    <td>{% if has_chat %}✅ Включен (уровень {{ chat_level }}){% else %}❌ Не включен{% endif %}</td>
+                </tr>
+                <tr>
+                    <td class="label">Сумма:</td>
+                    <td>{{ amount_display }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Дата:</td>
+                    <td>{{ purchase_date }}</td>
+                </tr>
+            </table>
+        </div>
+        
+        {% if invite_url %}
+        <div class="invite-section">
+            <h3>🎮 Присоединяйтесь к нашему Discord серверу!</h3>
+            <p>Нажмите на кнопку ниже, чтобы получить доступ к закрытым каналам</p>
+            <a href="{{ invite_url }}" class="invite-button">Присоединиться к Discord</a>
+            <p style="font-size: 14px; color: #666;">Ссылка действительна в течение 7 дней</p>
+        </div>
+        {% endif %}
+        
+        {% if has_chat %}
+        <div class="chat-info">
+            <h3>💬 Информация о чате</h3>
+            <p><strong>Уровень чата:</strong> {{ chat_level }}</p>
+            <p><strong>Действует до:</strong> {{ chat_expires }}</p>
+            <p><strong>Статус:</strong> Активен</p>
+            <p>Доступ к чату будет автоматически предоставлен после входа на Discord сервер.</p>
+        </div>
+        {% endif %}
+        
+        <div style="margin-top: 30px;">
+            <h3>📚 Что дальше?</h3>
+            <ol>
+                <li>Присоединитесь к нашему Discord серверу (если еще не сделали это)</li>
+                <li>Проверьте доступ к закрытым каналам</li>
+                <li>Начните обучение!</li>
+            </ol>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
+            <p style="margin: 0;"><strong>Нужна помощь?</strong></p>
+            <p style="margin: 10px 0 0 0;">
+                📧 Email: <a href="mailto:{{ support_email }}">{{ support_email }}</a><br>
+                💬 Discord: <a href="{{ support_discord }}">{{ support_discord }}</a>
+            </p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© {% now "Y" %} Ваш Сайт. Все права защищены.</p>
+        <p>Это письмо было отправлено автоматически, пожалуйста, не отвечайте на него.</p>
+    </div>
+</body>
+</html>

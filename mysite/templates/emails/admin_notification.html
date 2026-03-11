@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Новая покупка</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .success { color: #4CAF50; }
+        table { border-collapse: collapse; width: 100%; }
+        td { padding: 8px; border-bottom: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h2 class="success">💰 Новая покупка!</h2>
+    
+    <table>
+        <tr><td><strong>Email:</strong></td><td>{{ email }}</td></tr>
+        <tr><td><strong>Заказ ID:</strong></td><td>{{ order_id }}</td></tr>
+        <tr><td><strong>Платеж ID:</strong></td><td>{{ payment_id }}</td></tr>
+        <tr><td><strong>Товар:</strong></td><td>{{ course_name }}</td></tr>
+        <tr><td><strong>Чат:</strong></td><td>{% if has_chat %}Да (уровень {{ chat_level }}){% else %}Нет{% endif %}</td></tr>
+        <tr><td><strong>Сумма:</strong></td><td>${{ amount|floatformat:2 }}</td></tr>
+        <tr><td><strong>Дата:</strong></td><td>{{ purchase_date }}</td></tr>
+    </table>
+</body>
+</html>
