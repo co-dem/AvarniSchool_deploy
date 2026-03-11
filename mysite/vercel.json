@@ -6,7 +6,7 @@
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
     },
     {
-      "src": "build_files.sh",
+      "src": "mysite/build_files.sh",
       "use": "@vercel/static-build",
       "config": { "distDir": "staticfiles" }
     }
@@ -21,4 +21,5 @@
       "dest": "mysite/wsgi.py"
     }
   ]
+
 }
