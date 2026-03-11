@@ -1,7 +1,5 @@
 #!/bin/bash
-
-# Установка зависимостей
-python3 -m pip install -r requirements.txt
-
-# Сбор статических файлов
-python3 manage.py collectstatic --noinput
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt --break-system-packages
+python manage.py collectstatic --noinput
