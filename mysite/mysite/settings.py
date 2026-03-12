@@ -58,8 +58,8 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'mysite.wsgi.application'
-WSGI_APPLICATION = 'mysite.wsgi.app'
+WSGI_APPLICATION = 'mysite.wsgi.application'
+# WSGI_APPLICATION = 'mysite.wsgi.app'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -139,4 +139,5 @@ DISCORD_INVITE_URL = 'https://discord.gg/'
 
 
 # stripe listen --forward-to 127.0.0.1:8000/api/stripe-webhook/
+
 
