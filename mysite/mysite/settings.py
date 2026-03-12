@@ -61,16 +61,6 @@ TEMPLATES = [
 # WSGI_APPLICATION = 'mysite.wsgi.application'
 WSGI_APPLICATION = 'mysite.wsgi.app'
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -119,6 +109,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -145,5 +136,6 @@ ADMIN_EMAIL = 'Avarni.bot@gmail.com'
 # Discord bot URL
 DISCORD_BOT_URL = 'http://localhost:8001'
 DISCORD_INVITE_URL = 'https://discord.gg/'
+
 
 # stripe listen --forward-to 127.0.0.1:8000/api/stripe-webhook/
