@@ -11,7 +11,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'True')
+# DEBUG = os.getenv('DEBUG', 'True')
+DEBUG = False
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
@@ -139,5 +140,6 @@ DISCORD_INVITE_URL = 'https://discord.gg/'
 
 
 # stripe listen --forward-to 127.0.0.1:8000/api/stripe-webhook/
+
 
 
