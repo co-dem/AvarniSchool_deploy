@@ -1,15 +1,25 @@
 {
   "builds": [
     {
+      "src": "mysite/api/hello.py",
+      "use": "@vercel/python",
+      "config": { 
+        "runtime": "python3.12"
+      }
+    },
+    {
       "src": "mysite/mysite/wsgi.py",
       "use": "@vercel/python",
       "config": { 
-        "maxLambdaSize": "15mb", 
         "runtime": "python3.9"
       }
     }
   ],
   "routes": [
+    {
+      "src": "/api/hello",
+      "dest": "mysite/api/hello.py"
+    },
     {
       "src": "/static/(.*)",
       "dest": "/mysite/static/$1"
