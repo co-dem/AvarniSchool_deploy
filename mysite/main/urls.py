@@ -1,24 +1,16 @@
 from django.urls import path
 from . import views
 
-# urlpatterns = [
-#     path('', views.index, name='home'),
-#     path('pay/', views.pay_temp, name='pay'),
-#     path('api/order-handler/', views.order_handler, name='order-handler'),
-#     path('api/create-payment-intent/', views.create_payment_intent, name='create-payment-intent'),
-#     path('api/confirm-payment/', views.confirm_payment, name='confirm-payment'),
-#     path('api/stripe-webhook/', views.stripe_webhook, name='stripe-webhook'),
-#     path('api/test-check/', views.test_check, name='test-check'),
-    
-#     path('api/product-prices/', views.get_product_prices, name='product-prices'),
-# ]
-
 urlpatterns = [
     path('', views.index, name='home'),
     path('pay/', views.pay_temp, name='pay'),
-    path('api/test/', views.test_endpoint, name='test'),
+    path('api/order-handler/', views.order_handler, name='order-handler'),
+    path('api/create-payment-intent/', views.create_payment_intent, name='create-payment-intent'),
+    path('api/confirm-payment/', views.confirm_payment, name='confirm-payment'),
+    path('api/stripe-webhook/', views.stripe_webhook, name='stripe-webhook'),
+    path('api/test-check/', views.test_check, name='test-check'),
+    
     path('api/product-prices/', views.get_product_prices, name='product-prices'),
-    # остальные пути
 ]
 
 '''
