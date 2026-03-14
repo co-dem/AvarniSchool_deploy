@@ -7,11 +7,7 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.getenv('DEBUG', 'True')
+SECRET_KEY = 'django-insecure-test-key-for-vercel-12345'
 DEBUG = False
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
@@ -140,6 +136,7 @@ DISCORD_INVITE_URL = 'https://discord.gg/'
 
 
 # stripe listen --forward-to 127.0.0.1:8000/api/stripe-webhook/
+
 
 
 
