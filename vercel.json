@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "mysite/mysite/api/hello.py",
+      "src": "mysite/api/hello.py",
       "use": "@vercel/python",
       "config": { 
         "runtime": "python3.9"
