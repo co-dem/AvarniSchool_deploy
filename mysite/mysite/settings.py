@@ -56,8 +56,8 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'mysite.wsgi.application'
-WSGI_APPLICATION = 'mysite.wsgi.app'
+WSGI_APPLICATION = 'mysite.wsgi.application'
+# WSGI_APPLICATION = 'mysite.wsgi.app'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
