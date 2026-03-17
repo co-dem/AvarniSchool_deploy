@@ -102,11 +102,11 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = '/mysite/mysite/static/'
+STATIC_URL = '/mysite/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "mysite/mysite/static",
+    BASE_DIR / "mysite/static",
 ]
-STATIC_ROOT = BASE_DIR / "mysite/mysite/staticfiles"
+STATIC_ROOT = BASE_DIR / "mysite/staticfiles"
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
